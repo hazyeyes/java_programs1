@@ -8,8 +8,8 @@ public class ESPGamev2 {
     
     static void espgame() {
         Scanner scan = new Scanner (System.in);
-        String color = color_select();
         String user_input;
+        int corr_num;
 
         HashMap<String, Boolean> colorDictionary = new HashMap<>();
         colorDictionary.put("Red", true);
@@ -18,12 +18,16 @@ public class ESPGamev2 {
         colorDictionary.put("Orange", true);
         colorDictionary.put("Yellow", true);
         
+        corr_num = 0;
+
         for (int i = 1; i <= 10; i++) {
             System.out.print("Enter a color: ");
             user_input = capitalizeFirstLetter(scan.nextLine());
             if (colorDictionary.containsKey(user_input)) {
+                String color = color_select();
                 if (user_input.equals(color)) {
                     System.out.println("Congratulations! You get it right.\nThe color is " + color);
+                    corr_num ++;
                 } else {
                     System.out.println("Incorrect! Try again.\nThe color is " + color);
             } 
@@ -32,6 +36,7 @@ public class ESPGamev2 {
             espgame();
             }
         }
+        System.out.println("You correctly guessed the colors " + corr_num + " times.");
     }
 
     static String color_select() {
