@@ -1,15 +1,17 @@
 import java.util.*;
 
 public class ESPGamev2 {
-    
+    static int corr_num = 0;
     public static void main(String[] args) {
-        espgame();
+        for (int i = 1; i <= 10; i++) {
+            espgame();
+        }
+        System.out.println("You correctly guessed the colors " + corr_num + " times.");
     }    
     
     static void espgame() {
-        Scanner scan = new Scanner (System.in);
+        Scanner scan = new Scanner(System.in);
         String user_input;
-        int corr_num;
 
         HashMap<String, Boolean> colorDictionary = new HashMap<>();
         colorDictionary.put("Red", true);
@@ -18,25 +20,21 @@ public class ESPGamev2 {
         colorDictionary.put("Orange", true);
         colorDictionary.put("Yellow", true);
         
-        corr_num = 0;
+        System.out.print("Enter a color: ");
+        user_input = capitalizeFirstLetter(scan.nextLine());
 
-        for (int i = 1; i <= 10; i++) {
-            System.out.print("Enter a color: ");
-            user_input = capitalizeFirstLetter(scan.nextLine());
-            if (colorDictionary.containsKey(user_input)) {
-                String color = color_select();
-                if (user_input.equals(color)) {
-                    System.out.println("Congratulations! You get it right.\nThe color is " + color);
-                    corr_num ++;
-                } else {
-                    System.out.println("Incorrect! Try again.\nThe color is " + color);
+        if (colorDictionary.containsKey(user_input)) {
+            String color = color_select(); 
+            if (user_input.equals(color)) {
+                System.out.println("Congratulations! You got it right.\nThe color is " + color);
+                corr_num++; 
+            } else {
+                System.out.println("Incorrect! Try again.\nThe color is " + color);
             } 
         } else {
             System.out.println("Enter a valid input.");
-            espgame();
-            }
+            espgame(); 
         }
-        System.out.println("You correctly guessed the colors " + corr_num + " times.");
     }
 
     static String color_select() {
