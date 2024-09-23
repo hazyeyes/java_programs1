@@ -11,15 +11,26 @@ public class ESPGamev2 {
         String color = color_select();
         String user_input;
 
+        HashMap<String, Boolean> colorDictionary = new HashMap<>();
+        colorDictionary.put("Red", true);
+        colorDictionary.put("Green", true);
+        colorDictionary.put("Blue", true);
+        colorDictionary.put("Orange", true);
+        colorDictionary.put("Yellow", true);
+        
         for (int i = 1; i <= 10; i++) {
             System.out.print("Enter a color: ");
             user_input = capitalizeFirstLetter(scan.nextLine());
-            if (user_input.equals(color)) {
-                System.out.println("Congratulations! You get it right.\nThe color is " + color);
-            } else {
-                System.out.println("Incorrect! Try again.\nThe color is " + color);
-            }
+            if (colorDictionary.containsKey(user_input)) {
+                if (user_input.equals(color)) {
+                    System.out.println("Congratulations! You get it right.\nThe color is " + color);
+                } else {
+                    System.out.println("Incorrect! Try again.\nThe color is " + color);
+            } 
+        } else {
+            System.out.println("Enter a valid input.");
             espgame();
+            }
         }
     }
 
